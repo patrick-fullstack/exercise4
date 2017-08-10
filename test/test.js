@@ -58,7 +58,5 @@ describe('this', function () {
       return _say.bind(obj)
     }()
     obj.say()
-  }
-
-  )
+  })
 })
