@@ -14,7 +14,8 @@ describe('this', function () {
 
   it('global', function () {
     function test() {
-      // this 是什么？想想为什么？
+      // called by global
+      // so this points to global
       this.should.equal(global)
     }
     test()
@@ -24,7 +25,7 @@ describe('this', function () {
     var obj = {
       say: function () {
         function _say() {
-          // this 是什么？想想为什么？
+          // obj hasn't been defined yet
           this.should.equal(global)
         }
         return _say.bind(obj)
@@ -39,7 +40,8 @@ describe('this', function () {
     obj = {
       say: function () {
         function _say() {
-          // this 是什么？想想为什么？
+          // obj hasn't been defined 
+          // Obj points to a new object rather than the {} one
           this.should.equal(temp)
         }
         return _say.bind(obj)
@@ -52,7 +54,7 @@ describe('this', function () {
     var obj = {}
     obj.say = function () {
       function _say() {
-        // this 是什么？想想为什么？
+        // this still points to the obj 
         this.should.equal(obj)
       }
       return _say.bind(obj)
